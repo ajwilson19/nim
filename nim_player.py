@@ -2,14 +2,7 @@
 # nim player for CPSC 323
 
 class NimPlayer():
-    #takes one stick from first non-zero pile
-    def take(self, state):
-        for i in range(len(state)):
-            if state[i] > 0:
-                state[i] -= 1
-                return state
-    
-    #calculate nim sum
+    #calculate nim sum using bitwise XOR
     def nim(self, state):
         nim=0
         for pile in state:
@@ -36,7 +29,7 @@ class NimPlayer():
         for pos_state in possible_states:
             if self.nim(pos_state) == 0:
                 return pos_state
-        return self.take(state)
+        return possible_states[0]
     
     def play(self, state):
-        return self.best_move(state)
+        return self.best_move(state)  
